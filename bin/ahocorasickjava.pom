@@ -1,0 +1,26 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.xing.ds</groupId>
+  <artifactId>ahocorasick-deps</artifactId>
+    <version>1.0.0</version>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>http://repo.maven.apache.org/maven2</url>
+      <layout>default</layout>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.hankcs</groupId>
+      <artifactId>aho-corasick-double-array-trie</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+  </dependencies>
+</project>
