@@ -60,7 +60,7 @@ ac_build_and_search_list <- function(text, dictionary) {
 
 
 #' @export
-ac_is_overlap <- function(begin, end, ..., keep_order = F) {
+ac_is_overlapping <- function(begin, end, ..., keep_order = F) {
   dots <- rlang::exprs(...)
   data <- data_frame(begin, end, ...) %>%
     group_by(!!!dots)
