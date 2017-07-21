@@ -3,6 +3,7 @@ NULL
 
 .onLoad <- function(libname, pkgname) {
   .jpackage(pkgname, lib.loc = libname)
+  .jaddClassPath(dir(file.path(getwd(), "inst/java"), full.names = TRUE))
 }
 
 
