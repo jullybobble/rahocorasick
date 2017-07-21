@@ -28,7 +28,7 @@ ac_build <- function(keys, values = NULL) {
 #' @export
 ac_search <- function(text, trie) {
   text_ided <- data_frame(text) %>%
-    mutate(text_index = 1:length(text) - 1)
+    mutate(text_index = 1L:length(text) - 1L)
 
   refs <- J("ahocorasick.AhoCorasickWrapper")$detect(.jarray(text), trie)
   refs_df <- data_frame(text_index = refs$getTextIndex(),
