@@ -16,12 +16,11 @@ ac_build_list <- function(dictionary) {
 
 #' @export
 ac_build <- function(keys, values = NULL) {
+  keys <- as.character(keys)
   if(is.null(values)) {
-    keys <- as.character(dictionary)
-    J("ahocorasick.AhoCorasickWrapper")$build(keys)
+    J("ahocorasick.AhoCorasickWrapper")$build(.jarray(keys))
   } else {
-    keys <- names(dictionary)
-    J("ahocorasick.AhoCorasickWrapper")$build(keys, as.character(dictionary))
+    J("ahocorasick.AhoCorasickWrapper")$build(.jarray(keys), .jarray(as.character(values)))
   }
 }
 
