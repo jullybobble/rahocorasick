@@ -13,3 +13,4 @@ Imports: rJava,
     tidyr,
     purrr,
     stringi
+Suggests: testthat
