@@ -1,7 +1,7 @@
 Package: rahocorasick
 Type: Package
 Title: Aho-Corasick exact string search
-Version: 0.1.1
+Version: 0.2.0
 Author: person("Julien", "Gaugaz", email = "julien.gaugaz@gmail.com", role = c("aut", "cre"))
 Description: R wrapper around a Java implementation of the Aho-Corasick alogorithm for exact string search.
 License: License: MIT + file LICENSE
@@ -13,3 +13,4 @@ Imports: rJava,
     tidyr,
     purrr,
     stringi
+Suggests: testthat

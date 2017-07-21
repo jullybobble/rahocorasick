@@ -3,29 +3,32 @@ NULL
 
 .onLoad <- function(libname, pkgname) {
   .jpackage(pkgname, lib.loc = libname)
+  .jaddClassPath(dir(file.path(getwd(), "inst/java"), full.names = TRUE))
 }
 
 
 #' @export
 ac_build_list <- function(dictionary) {
+  if(!is.list(dictionary) || is.null(names(dictionary))) {
+    stop("dictionary must be a named list")
+  }
   ac_build(names(dictionary), dictionary)
 }
 
 #' @export
 ac_build <- function(keys, values = NULL) {
+  keys <- as.character(keys)
   if(is.null(values)) {
-    keys <- as.character(dictionary)
-    J("ahocorasick.AhoCorasickWrapper")$build(keys)
+    J("ahocorasick.AhoCorasickWrapper")$build(.jarray(keys))
   } else {
-    keys <- names(dictionary)
-    J("ahocorasick.AhoCorasickWrapper")$build(keys, as.character(dictionary))
+    J("ahocorasick.AhoCorasickWrapper")$build(.jarray(keys), .jarray(as.character(values)))
   }
 }
 
 #' @export
 ac_search <- function(text, trie) {
   text_ided <- data_frame(text) %>%
-    mutate(text_index = 1:length(text) - 1)
+    mutate(text_index = 1L:length(text) - 1L)
 
   refs <- J("ahocorasick.AhoCorasickWrapper")$detect(.jarray(text), trie)
   refs_df <- data_frame(text_index = refs$getTextIndex(),
@@ -60,7 +63,7 @@ ac_build_and_search_list <- function(text, dictionary) {
 
 
 #' @export
-ac_is_overlap <- function(begin, end, ..., keep_order = F) {
+ac_is_overlapping <- function(begin, end, ..., keep_order = F) {
   dots <- rlang::exprs(...)
   data <- data_frame(begin, end, ...) %>%
     group_by(!!!dots)
