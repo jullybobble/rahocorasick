@@ -8,6 +8,9 @@ NULL
 
 #' @export
 ac_build_list <- function(dictionary) {
+  if(!is.list(dictionary) || is.null(names(dictionary))) {
+    stop("dictionary must be a named list")
+  }
   ac_build(names(dictionary), dictionary)
 }
 
