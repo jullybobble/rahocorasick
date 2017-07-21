@@ -21,7 +21,9 @@ ac_build <- function(keys, values = NULL) {
   if(is.null(values)) {
     J("ahocorasick.AhoCorasickWrapper")$build(.jarray(keys))
   } else {
-    J("ahocorasick.AhoCorasickWrapper")$build(.jarray(keys), .jarray(as.character(values)))
+    values <- as.character(values)
+    data_frame(k = keys, v = values) %>%
+      with(J("ahocorasick.AhoCorasickWrapper")$build(.jarray(k), .jarray(v)))
   }
 }
 
